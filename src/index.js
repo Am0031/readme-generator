@@ -5,7 +5,7 @@ import inquirer from "inquirer";
 import fs from "fs";
 
 //requiring email validator package
-import * as EmailValidator from "email-validator";
+import { validate } from "email-validator";
 
 const questions = [
   {
@@ -61,7 +61,7 @@ const questions = [
     name: "email",
     message: "What's your email address?",
     validate: (email) => {
-      if (!EmailValidator.validate(email)) {
+      if (!validate(email)) {
         return "Please enter a valid email address";
       } else {
         return true;
