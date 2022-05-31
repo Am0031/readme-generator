@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/Am0031/readme-generator#readme",
   "dependencies": {
+    "email-validator": "^2.0.4",
     "inquirer": "^8.2.4"
   }
 }
