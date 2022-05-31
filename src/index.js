@@ -4,6 +4,9 @@ import inquirer from "inquirer";
 //requiring fs module from Node.js core - fs will be used to write into the files
 import fs from "fs";
 
+//requiring chalk module from Node.js core - chalk will be used to style the lines in the CLI
+import chalk from "chalk";
+
 //requiring email validator package
 import { validate } from "email-validator";
 
@@ -71,10 +74,16 @@ const questions = [
 ];
 
 const init = async () => {
+  console.log(chalk.yellow("Let's collect your project information..."));
   const userResponses = await inquirer.prompt(questions);
+  console.log(chalk.green("All the required info has been provided!"));
   console.log("Your responses:", userResponses);
 
-  // const newMarkdown = generateMarkdown(userResponses);
+  //use responses to create the required markdown
+  // const markdown = generateMarkdown(userResponses);
+
+  //write generated markdown into a .md file
+  //fs.writeFileSync(generatedReadme, markdown)
 };
 
 init();
