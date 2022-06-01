@@ -123,7 +123,7 @@ const init = async () => {
 
   //write generated markdown into a .md file
   console.log(
-    chalk.yellow("Generating the new generatedMarkdown.md file now...")
+    chalk.yellow("Generating the new GENERATEDREADME.md file now...")
   );
   writeToFile("GENERATEDREADME", markdown);
   console.log(chalk.green("Your new file has been created successfully!"));

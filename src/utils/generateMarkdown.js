@@ -37,12 +37,6 @@ const generateMarkdown = (answers) => {
     license,
   };
 
-  //collates the required variables into an object that we will use for the question section
-  //   const questionSection = {
-  //     userName,
-  //     email,
-  //   };
-
   //rendering question section
   const renderQuestion = () => {
     return `## Questions? \n If you have any questions about this project, you can contact me directly by [email](mailto:${email}). And you can check more of my projects on my [github page](https://www.github.com/${userName}).\n`;
@@ -53,11 +47,14 @@ const generateMarkdown = (answers) => {
     const gatherMainInfo = (each) => {
       const eachInfo = { sectionTitle: each[0], sectionContent: each[1] };
       if (
-        sectionTitle === "installation" ||
-        sectionTitle === "testInstructions"
+        eachInfo.sectionTitle === "installation" ||
+        eachInfo.sectionTitle === "testInstructions"
       ) {
         eachInfo.sectionType = "code";
-      } else if (sectionTitle === "license" && sectionContent === "Other") {
+      } else if (
+        eachInfo.sectionTitle === "license" &&
+        eachInfo.sectionContent === "Other"
+      ) {
         eachInfo.sectionContent = licenseText;
         eachInfo.sectionType = "text";
       } else {
@@ -75,14 +72,13 @@ const generateMarkdown = (answers) => {
       };
       const mainString = `## ${capitalCase(
         each.sectionTitle
-      )}\n\n${getFormattedContent(each)} `;
+      )}\n\n${getFormattedContent(each)}\n\n `;
       return mainString;
     };
 
     const mainInfo = Object.entries(section)
       .filter((s) => !!s[1])
       .map(gatherMainInfo);
-    console.log(mainInfo);
 
     const mainString = mainInfo.map(createMainSection).join("");
 
@@ -92,20 +88,20 @@ const generateMarkdown = (answers) => {
   //looping over our object to render the template string for each ToC item
   const renderToC = (contentSection) => {
     const createToCSection = (each) =>
-      `* [${capitalCase(each[0])}](#${capitalCase(each[0])})\n`;
-    const tocString = Object.entries(contentSection)
+      `* [${capitalCase(each[0])}](#${each[0]})\n`;
+    const tocList = Object.entries(contentSection)
       .filter((s) => !!s[1])
       .map(createToCSection)
       .join("");
+    const tocString = `## Table of content\n\n${tocList}\n\n`;
     return tocString;
   };
 
   //rendering title and license badge at top of markdown file
-  const renderTitle = (object) => {
-    const chosenLicense =
-      object.license === "Other" ? object.licenseText : object.license;
+  const renderTitle = () => {
+    const chosenLicense = license === "Other" ? licenseText : license;
 
-    return `# ${object.title} ![License](https://img.shields.io/badge/License-${chosenLicense}-blue)\n`;
+    return `# ${title} ![License](https://img.shields.io/badge/License-${chosenLicense}-blue)\n\n`;
   };
 
   const titleString = renderTitle(titleSection);
@@ -113,12 +109,7 @@ const generateMarkdown = (answers) => {
   const mainString = renderMain(contentSection);
   const questionString = renderQuestion();
 
-  const markdown = `
-  ${titleString}\n
-  ${tocString}\n
-  ${mainString}\n
-  ${questionString}\n
-  `;
+  const markdown = `${titleString}\n${tocString}\n${mainString}\n${questionString}\n`;
 
   return markdown;
 };
