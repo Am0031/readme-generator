@@ -16,6 +16,9 @@ import generateMarkdown from "./utils/generateMarkdown.js";
 //requiring the writeToFile js file
 import writeToFile from "./utils/writeToFile.js";
 
+//requiring the change case package to format file name
+import { paramCase } from "change-case";
+
 const getUserResponses = async () => {
   const questions = [
     {
@@ -105,6 +108,13 @@ const getUserResponses = async () => {
         }
       },
     },
+    {
+      type: "input",
+      name: "fileName",
+      message:
+        "What name would you like for your .md file? Please provide only the name without the .md extension.",
+      default: "GENERATEDREADME",
+    },
   ];
 
   const userResponses = await inquirer.prompt(questions);
@@ -121,10 +131,9 @@ const init = async () => {
   const markdown = generateMarkdown(userResponses);
 
   //write generated markdown into a .md file
-  console.log(
-    chalk.yellow("Generating the new GENERATEDREADME.md file now...")
-  );
-  writeToFile("GENERATEDREADME", markdown);
+  console.log(chalk.yellow("Generating the new .md file now..."));
+  const fileName = paramCase(userResponses.fileName);
+  writeToFile(fileName, markdown);
   console.log(chalk.green("Your new file has been created successfully!"));
 };
 
