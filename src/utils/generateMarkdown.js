@@ -101,7 +101,9 @@ const generateMarkdown = (answers) => {
   const renderTitle = () => {
     const chosenLicense = license === "Other" ? licenseText : license;
 
-    return `# ${title} ![License](https://img.shields.io/badge/License-${chosenLicense}-blue)\n\n`;
+    return `# ${capitalCase(
+      title
+    )} ![License](https://img.shields.io/badge/License-${chosenLicense}-blue)\n\n`;
   };
 
   const titleString = renderTitle(titleSection);
