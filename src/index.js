@@ -119,7 +119,6 @@ const init = async () => {
   //use responses to create the required markdown
   console.log(chalk.yellow("Creating your markdown from your answers now..."));
   const markdown = generateMarkdown(userResponses);
-  console.log("Your markdown content:", markdown);
 
   //write generated markdown into a .md file
   console.log(
