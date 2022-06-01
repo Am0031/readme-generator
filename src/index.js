@@ -10,6 +10,10 @@ import chalk from "chalk";
 //requiring email validator package
 import { validate } from "email-validator";
 
+//requiring the generateMarkdown js file
+import generateMarkdown from "./utils/generateMarkdown.js";
+// const generateMarkdown = require("../src/utils/generateMarkdown");
+
 const getUserResponses = async () => {
   const questions = [
     {
@@ -112,10 +116,13 @@ const init = async () => {
   console.log("Your responses:", userResponses);
 
   //use responses to create the required markdown
-  // const markdown = generateMarkdown(userResponses);
+  console.log(chalk.yellow("Creating your markdown from your answers now..."));
+  const markdown = generateMarkdown(userResponses);
 
   //write generated markdown into a .md file
-  //fs.writeFileSync(generatedReadme, markdown)
+  //console.log(chalk.yellow("Generating the new generatedMarkdown.md file now..."));
+  //fs.writeFileSync(generatedReadme, markdown);
+  //console.log(chalk.green("Your new file has been created successfully!"));
 };
 
 init();
