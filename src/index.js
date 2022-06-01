@@ -12,7 +12,9 @@ import { validate } from "email-validator";
 
 //requiring the generateMarkdown js file
 import generateMarkdown from "./utils/generateMarkdown.js";
-// const generateMarkdown = require("../src/utils/generateMarkdown");
+
+//requiring the writeToFile js file
+import writeToFile from "./utils/writeToFile.js";
 
 const getUserResponses = async () => {
   const questions = [
@@ -31,17 +33,17 @@ const getUserResponses = async () => {
     {
       type: "input",
       name: "description",
-      message: "Please add a short description of your project",
+      message: "Please add a short description of your project :",
     },
     {
       type: "input",
       name: "installation",
-      message: "Please give the installation instructions for your project",
+      message: "Please give the installation instructions for your project :",
     },
     {
       type: "input",
       name: "usage",
-      message: "Please give the usage information for your project",
+      message: "Please give the usage information for your project :",
     },
     {
       type: "confirm",
@@ -58,7 +60,7 @@ const getUserResponses = async () => {
     {
       type: "confirm",
       name: "hasTestInstructions",
-      message: "Would you like to add test instructions for your project",
+      message: "Would you like to add test instructions for your project?",
     },
     {
       type: "input",
@@ -69,7 +71,7 @@ const getUserResponses = async () => {
     {
       type: "list",
       name: "license",
-      message: "Please choose a licence for your project",
+      message: "Please choose a licence for your project :",
       choices: [
         "MIT",
         "APACHE_2.0",
@@ -113,16 +115,18 @@ const init = async () => {
   console.log(chalk.yellow("Let's collect your project information..."));
   const userResponses = await getUserResponses();
   console.log(chalk.green("All the required info has been provided!"));
-  console.log("Your responses:", userResponses);
 
   //use responses to create the required markdown
   console.log(chalk.yellow("Creating your markdown from your answers now..."));
   const markdown = generateMarkdown(userResponses);
+  console.log("Your markdown content:", markdown);
 
   //write generated markdown into a .md file
-  //console.log(chalk.yellow("Generating the new generatedMarkdown.md file now..."));
-  //fs.writeFileSync(generatedReadme, markdown);
-  //console.log(chalk.green("Your new file has been created successfully!"));
+  console.log(
+    chalk.yellow("Generating the new generatedMarkdown.md file now...")
+  );
+  writeToFile("README", markdown);
+  console.log(chalk.green("Your new file has been created successfully!"));
 };
 
 init();
