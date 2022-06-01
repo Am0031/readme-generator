@@ -125,7 +125,7 @@ const init = async () => {
   console.log(
     chalk.yellow("Generating the new generatedMarkdown.md file now...")
   );
-  writeToFile("README", markdown);
+  writeToFile("GENERATEDREADME", markdown);
   console.log(chalk.green("Your new file has been created successfully!"));
 };
 

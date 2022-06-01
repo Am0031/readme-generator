@@ -6,23 +6,31 @@ const generateMarkdown = (answers) => {
     "Allocating your answers into the markdown sections right now..."
   );
 
-  //creates a const variable for each key mentioned by checking into answers for this key, and allocates the value
+  //creates a const variable for each key needed by checking into answers for this key, and allocates the value
   const {
+    title,
     description,
     installation,
     usage,
     contributionGuidelines,
     testInstructions,
+    license,
+    licenseText,
+    userName,
+    email,
   } = answers;
 
+  //collates the required variables into an object that we will use for the table of content
   const contentSections = {
     description,
     installation,
     usage,
     contributionGuidelines,
     testInstructions,
+    license,
   };
 
+  //looping over our object to render the template string for each ToC item
   const renderToC = (contentSections) => {
     const createToCSection = (each) =>
       `* [${capitalCase(each[0])}](#${capitalCase(each[0])})\n`;
