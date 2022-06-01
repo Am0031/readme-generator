@@ -53,7 +53,7 @@ const getUserResponses = async () => {
     },
     {
       type: "input",
-      name: "contributionGuidelines",
+      name: "contributions",
       message: "Please add the contribution guidelines for your project :",
       when: (answers) => answers.hasContributionGuidelines,
     },
@@ -64,7 +64,7 @@ const getUserResponses = async () => {
     },
     {
       type: "input",
-      name: "testInstructions",
+      name: "test",
       message: "Please add the test instructions for your project :",
       when: (answers) => answers.hasTestInstructions,
     },

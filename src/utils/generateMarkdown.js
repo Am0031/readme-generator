@@ -12,8 +12,8 @@ const generateMarkdown = (answers) => {
     description,
     installation,
     usage,
-    contributionGuidelines,
-    testInstructions,
+    contributions,
+    test,
     license,
     licenseText,
     userName,
@@ -32,8 +32,8 @@ const generateMarkdown = (answers) => {
     description,
     installation,
     usage,
-    contributionGuidelines,
-    testInstructions,
+    contributions,
+    test,
     license,
   };
 
@@ -48,7 +48,7 @@ const generateMarkdown = (answers) => {
       const eachInfo = { sectionTitle: each[0], sectionContent: each[1] };
       if (
         eachInfo.sectionTitle === "installation" ||
-        eachInfo.sectionTitle === "testInstructions"
+        eachInfo.sectionTitle === "test"
       ) {
         eachInfo.sectionType = "code";
       } else if (
@@ -93,7 +93,7 @@ const generateMarkdown = (answers) => {
       .filter((s) => !!s[1])
       .map(createToCSection)
       .join("");
-    const tocString = `## Table of content\n\n${tocList}\n\n`;
+    const tocString = `## Table of content\n\n${tocList}* [Questions](#questions)\n\n`;
     return tocString;
   };
 
