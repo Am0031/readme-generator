@@ -71,7 +71,14 @@ const questions = [
       "BSD_3",
       "WTFPL",
       "The Unlicense",
+      "Other",
     ],
+  },
+  {
+    type: "input",
+    name: "licenseText",
+    message: "Please type the name of the license you'd like to add :",
+    when: (answers) => answers.license === "Other",
   },
   {
     type: "input",
