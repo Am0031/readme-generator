@@ -20,6 +20,13 @@ const generateMarkdown = (answers) => {
     email,
   } = answers;
 
+  //collates the required variables into an object that we will use for the title
+  const titleSection = {
+    title,
+    license,
+    licenseText,
+  };
+
   //collates the required variables into an object that we will use for the table of content
   const contentSection = {
     description,
@@ -30,10 +37,48 @@ const generateMarkdown = (answers) => {
     license,
   };
 
-  const titleSection = {
-    title,
-    license,
-    licenseText,
+  //collates the required variables into an object that we will use for the question section
+  const questionSection = {
+    userName,
+    email,
+  };
+
+  //looping over our object to render the main sections
+  const renderMain = (section) => {
+    const gatherMainInfo = (each) => {
+      const eachInfo = { sectionTitle: each[0], sectionContent: each[1] };
+      if (
+        sectionTitle === "installation" ||
+        sectionTitle === "testInstructions"
+      ) {
+        eachInfo.sectionType = "code";
+      } else {
+        eachInfo.sectionType = "text";
+      }
+      return eachInfo;
+    };
+    const createMainSection = (each) => {
+      const getFormattedContent = (each) => {
+        if (each.sectionType === "code") {
+          return `\n\`\`\`\n${each.sectionContent}\n\`\`\`\n`;
+        } else {
+          return `\n${each.sectionContent}\n`;
+        }
+      };
+      const mainString = `## ${capitalCase(
+        each.sectionName
+      )}\n\n${getFormattedContent(each)} `;
+      return mainString;
+    };
+
+    const mainInfo = Object.entries(section)
+      .filter((s) => !!s[1])
+      .map(gatherMainInfo);
+    console.log(mainInfo);
+
+    const mainString = mainInfo.map(createMainSection).join("");
+
+    return mainString;
   };
 
   //looping over our object to render the template string for each ToC item
@@ -44,7 +89,6 @@ const generateMarkdown = (answers) => {
       .filter((s) => !!s[1])
       .map(createToCSection)
       .join("");
-    console.log(tocString);
     return tocString;
   };
 
