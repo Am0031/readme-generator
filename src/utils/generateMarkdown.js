@@ -38,9 +38,14 @@ const generateMarkdown = (answers) => {
   };
 
   //collates the required variables into an object that we will use for the question section
-  const questionSection = {
-    userName,
-    email,
+  //   const questionSection = {
+  //     userName,
+  //     email,
+  //   };
+
+  //rendering question section
+  const renderQuestion = () => {
+    return `## Questions? \n If you have any questions about this project, you can contact me directly by [email](mailto:${email}). And you can check more of my projects on my [github page](https://www.github.com/${userName}).\n`;
   };
 
   //looping over our object to render the main sections
@@ -52,6 +57,9 @@ const generateMarkdown = (answers) => {
         sectionTitle === "testInstructions"
       ) {
         eachInfo.sectionType = "code";
+      } else if (sectionTitle === "license" && sectionContent === "Other") {
+        eachInfo.sectionContent = licenseText;
+        eachInfo.sectionType = "text";
       } else {
         eachInfo.sectionType = "text";
       }
@@ -66,7 +74,7 @@ const generateMarkdown = (answers) => {
         }
       };
       const mainString = `## ${capitalCase(
-        each.sectionName
+        each.sectionTitle
       )}\n\n${getFormattedContent(each)} `;
       return mainString;
     };
@@ -103,9 +111,14 @@ const generateMarkdown = (answers) => {
   const titleString = renderTitle(titleSection);
   const tocString = renderToC(contentSection);
   const mainString = renderMain(contentSection);
-  const questionString = renderQuestion(questionSection);
+  const questionString = renderQuestion();
 
-  const markdown = ``;
+  const markdown = `
+  ${titleString}\n
+  ${tocString}\n
+  ${mainString}\n
+  ${questionString}\n
+  `;
 
   return markdown;
 };
