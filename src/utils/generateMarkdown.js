@@ -1,5 +1,5 @@
 //requiring the change case package to format titles
-import { capitalCase, snakeCase } from "change-case";
+const { capitalCase, snakeCase } = require("change-case");
 
 const generateMarkdown = (answers) => {
   console.log(
@@ -109,4 +109,4 @@ const generateMarkdown = (answers) => {
   return markdown;
 };
 
-export default generateMarkdown;
+module.exports = generateMarkdown;

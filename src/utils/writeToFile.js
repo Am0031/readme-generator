@@ -1,5 +1,5 @@
-// importing the fs module from Node.js core
-import fs from "fs";
+// requiring the fs module from Node.js core
+const fs = require("fs");
 
 const writeToFile = (fileName, markdown) => {
   try {
@@ -11,4 +11,4 @@ const writeToFile = (fileName, markdown) => {
   }
 };
 
-export default writeToFile;
+module.exports = writeToFile;

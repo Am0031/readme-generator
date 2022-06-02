@@ -1,21 +1,22 @@
 //requiring inquirer from installed node modules - inquirer will be used to prompt questions and get answers
-import inquirer from "inquirer";
+const inquirer = require("inquirer");
 
 //requiring chalk module from Node.js core - chalk will be used to style the lines in the CLI
-import chalk from "chalk";
+const chalk = require("chalk");
 
 //requiring email validator package
-import { validate } from "email-validator";
+const validator = require("email-validator");
 
 //requiring the generateMarkdown js file
-import generateMarkdown from "./utils/generateMarkdown.js";
+const generateMarkdown = require("./utils/generateMarkdown");
 
 //requiring the writeToFile js file
-import writeToFile from "./utils/writeToFile.js";
+const writeToFile = require("./utils/writeToFile");
 
 //requiring the change case package to format file name
-import { paramCase } from "change-case";
+const { paramCase } = require("change-case");
 
+//function - prompts questions to the user and collates answers in the correct format
 const getUserResponses = async () => {
   const questions = [
     {
@@ -114,7 +115,7 @@ const getUserResponses = async () => {
       name: "email",
       message: "What's your email address?",
       validate: (email) => {
-        if (!validate(email)) {
+        if (!validator.validate(email)) {
           return "Please enter a valid email address";
         } else {
           return true;
@@ -154,6 +155,7 @@ const getUserResponses = async () => {
   return userResponses;
 };
 
+//Main function - starts generating file cycle (prompts+answers, generating, writing file)
 const init = async () => {
   console.log(chalk.yellow("Let's collect your project information..."));
   const userResponses = await getUserResponses();
