@@ -1,9 +1,6 @@
 //requiring inquirer from installed node modules - inquirer will be used to prompt questions and get answers
 import inquirer from "inquirer";
 
-//requiring fs module from Node.js core - fs will be used to write into the files
-import fs from "fs";
-
 //requiring chalk module from Node.js core - chalk will be used to style the lines in the CLI
 import chalk from "chalk";
 
@@ -99,6 +96,13 @@ const getUserResponses = async () => {
       name: "licenseText",
       message: "Please type the name of the license you'd like to add :",
       when: (answers) => answers.license === "Other",
+      validate: (answer) => {
+        if (answer.length > 20) {
+          return "Please make sure your license name is under 20 characters.";
+        } else {
+          return true;
+        }
+      },
     },
     {
       type: "input",
@@ -144,6 +148,7 @@ const getUserResponses = async () => {
     userResponses.installation,
     ","
   );
+
   userResponses.installation = formattedInstallation;
 
   return userResponses;

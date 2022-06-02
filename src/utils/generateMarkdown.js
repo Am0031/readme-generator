@@ -1,5 +1,5 @@
 //requiring the change case package to format titles
-import { capitalCase } from "change-case";
+import { capitalCase, snakeCase } from "change-case";
 
 const generateMarkdown = (answers) => {
   console.log(
@@ -19,13 +19,6 @@ const generateMarkdown = (answers) => {
     userName,
     email,
   } = answers;
-
-  //collates the required variables into an object that we will use for the title
-  const titleSection = {
-    title,
-    license,
-    licenseText,
-  };
 
   //collates the required variables into an object that we will use for the table of content
   const contentSection = {
@@ -65,7 +58,7 @@ const generateMarkdown = (answers) => {
     const createMainSection = (each) => {
       const getFormattedContent = (each) => {
         if (each.sectionType === "code") {
-          return `\n\`\`\`\n${each.sectionContent}\n\`\`\`\n`;
+          return `\nThese are the entries required in the CLI:\n\`\`\`\n${each.sectionContent}\n\`\`\`\n`;
         } else {
           return `\n${each.sectionContent}\n`;
         }
@@ -99,14 +92,15 @@ const generateMarkdown = (answers) => {
 
   //rendering title and license badge at top of markdown file
   const renderTitle = () => {
-    const chosenLicense = license === "Other" ? licenseText : license;
+    const chosenLicense =
+      license === "Other" ? snakeCase(licenseText) : license;
 
     return `# ${capitalCase(
       title
     )} ![License](https://img.shields.io/badge/License-${chosenLicense}-blue)\n\n`;
   };
 
-  const titleString = renderTitle(titleSection);
+  const titleString = renderTitle();
   const tocString = renderToC(contentSection);
   const mainString = renderMain(contentSection);
   const questionString = renderQuestion();
