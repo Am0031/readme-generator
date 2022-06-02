@@ -86,8 +86,7 @@ const generateMarkdown = (answers) => {
       .filter((s) => !!s[1])
       .map(createToCSection)
       .join("");
-    const tocString = `## Table of content\n\n${tocList}* [Questions](#questions)\n\n`;
-    return tocString;
+    return `## Table of content\n\n${tocList}* [Questions](#questions)\n\n`;
   };
 
   //rendering title and license badge at top of markdown file
