@@ -4,6 +4,9 @@
 
 This is a Readme.md generator using node.js and the inquirer package.
 
+Github repo: [Go to Repo](https://github.com/Am0031/readme-generator/tree/dev)
+Demo video: [Go to demo video](https://drive.google.com/file/d/19Onj9t4jXswuMQkjJEMq_R2FEVlDz3yd/view)
+
 ## Table of Contents
 
 - [About the Project](#about-the-project)
