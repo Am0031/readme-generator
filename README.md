@@ -2,7 +2,7 @@
 
 ## Summary of the project
 
-Readme.md generator using node.js and the inquirer package
+This is a Readme.md generator using node.js and the inquirer package.
 
 ## Table of Contents
 
@@ -28,7 +28,7 @@ For this project, the following technologies and packages were used:
 
 To get this project installed, the following steps are required:
 
-The first step is to clone the repository, using SSH keys:
+Clone the repository, using SSH keys:
 
 ```
 git clone git@github.com:Am0031/readme-generator.git
@@ -40,7 +40,7 @@ Or using HTTPS link:
 git clone https://github.com/Am0031/readme-generator.git
 ```
 
-Then going into the new repository and installing the required packages:
+Go into the new repository and install the required packages:
 
 ```
 cd readme-generator
