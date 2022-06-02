@@ -55,8 +55,10 @@ npm run start
 
 ## Demo video of the application
 
-This [video]() shows how the application works.
-Please click here to view the demo.
+This video shows how the application works.
+Please click [here]](https://drive.google.com/file/d/19Onj9t4jXswuMQkjJEMq_R2FEVlDz3yd/view) to open the video.
+
+![Readme demo gif](readme-generator.gif)
 
 ## License
 

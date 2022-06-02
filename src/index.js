@@ -35,6 +35,7 @@ const getUserResponses = async () => {
       type: "input",
       name: "description",
       message: "Please add a short description of your project :",
+      default: "No details provided yet",
     },
     {
       type: "input",
@@ -53,6 +54,7 @@ const getUserResponses = async () => {
       type: "input",
       name: "usage",
       message: "Please give the usage information for your project :",
+      default: "No details provided yet",
     },
     {
       type: "confirm",
@@ -65,6 +67,7 @@ const getUserResponses = async () => {
       name: "contributions",
       message: "Please add the contribution guidelines for your project :",
       when: (answers) => answers.hasContributionGuidelines,
+      default: "No details provided yet",
     },
     {
       type: "confirm",
@@ -108,7 +111,14 @@ const getUserResponses = async () => {
     {
       type: "input",
       name: "userName",
-      message: "What's your github username?",
+      message: "What's your github username? [This entry is case sensitive]",
+      validate: (answer) => {
+        if (!answer) {
+          return "Please provide your github username";
+        } else {
+          return true;
+        }
+      },
     },
     {
       type: "input",
