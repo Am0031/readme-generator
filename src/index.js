@@ -131,15 +131,12 @@ const getUserResponses = async () => {
   const formatInstallationInput = (fullString, separator) => {
     let fullArray = [];
 
-    if (fullString !== undefined) {
-      if (fullString.indexOf(separator) == -1) {
-        fullArray.push(fullString);
-      } else {
-        fullArray = fullString
-          .split(separator)
-          .map((element) => element.trim());
-      }
+    if (fullString.indexOf(separator) == -1) {
+      fullArray.push(fullString);
+    } else {
+      fullArray = fullString.split(separator).map((string) => string.trim());
     }
+
     return fullArray.join("\n");
   };
 
