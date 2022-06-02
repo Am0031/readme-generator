@@ -41,7 +41,15 @@ const getUserResponses = async () => {
     {
       type: "input",
       name: "installation",
-      message: "Please give the installation instructions for your project :",
+      message:
+        "Please give the installation instructions for your project. Enter each line of code as you would type it in the CLI, with each line separated by a comma :",
+      validate: (answer) => {
+        if (!answer) {
+          return "Please enter at least one instruction to get your project running in the CLI.";
+        } else {
+          return true;
+        }
+      },
     },
     {
       type: "input",
@@ -68,7 +76,8 @@ const getUserResponses = async () => {
     {
       type: "input",
       name: "test",
-      message: "Please add the test instructions for your project :",
+      message:
+        "Please add the test instruction command line for your project as you would type it in the CLI :",
       when: (answers) => answers.hasTestInstructions,
     },
     {
@@ -118,6 +127,28 @@ const getUserResponses = async () => {
   ];
 
   const userResponses = await inquirer.prompt(questions);
+
+  const formatInstallationInput = (fullString, separator) => {
+    let fullArray = [];
+
+    if (fullString !== undefined) {
+      if (fullString.indexOf(separator) == -1) {
+        fullArray.push(fullString);
+      } else {
+        fullArray = fullString
+          .split(separator)
+          .map((element) => element.trim());
+      }
+    }
+    return fullArray.join("\n");
+  };
+
+  const formattedInstallation = formatInstallationInput(
+    userResponses.installation,
+    ","
+  );
+  userResponses.installation = formattedInstallation;
+
   return userResponses;
 };
 
