@@ -58,6 +58,8 @@ npm run start
 This video shows how the application works.
 Please click [here](https://drive.google.com/file/d/19Onj9t4jXswuMQkjJEMq_R2FEVlDz3yd/view) to open the video.
 
+You can also check out the readme template that this application creates by looking at the file ["generatedreadme.md"](generatedreadme.md) available in this repository.
+
 ![Readme demo gif](readme-generator-demo.gif)
 
 ## License
