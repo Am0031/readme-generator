@@ -20,7 +20,7 @@ const questions = require("./utils/markdownQuestions");
 const getUserResponses = async () => {
   const userResponses = await inquirer.prompt(questions);
 
-  const formatInstallationInput = (fullString, separator) => {
+  const formatInput = (fullString, separator) => {
     return fullString.indexOf(separator) === -1
       ? `${fullString}\n`
       : fullString
@@ -29,10 +29,7 @@ const getUserResponses = async () => {
           .join("\n");
   };
 
-  const formattedInstallation = formatInstallationInput(
-    userResponses.installation,
-    ","
-  );
+  const formattedInstallation = formatInput(userResponses.installation, ",");
 
   userResponses.installation = formattedInstallation;
 
