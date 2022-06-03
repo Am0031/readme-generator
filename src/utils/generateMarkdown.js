@@ -2,10 +2,6 @@
 const { capitalCase, snakeCase } = require("change-case");
 
 const generateMarkdown = (answers) => {
-  console.log(
-    "Allocating your answers into the markdown sections right now..."
-  );
-
   //creates a const variable for each key needed by checking into answers for this key, and allocates the value
   const {
     title,
