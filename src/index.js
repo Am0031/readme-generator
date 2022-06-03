@@ -14,7 +14,7 @@ const writeToFile = require("./utils/writeToFile");
 const { paramCase } = require("change-case");
 
 //requiring questions set from questions js file
-const questions = require("./utils/markdownQuestions");
+const questions = require("./utils/readmeQuestions");
 
 //function - prompts questions to the user and collates answers in the correct format
 const getUserResponses = async () => {
