@@ -6,13 +6,8 @@ const questions = [
     type: "input",
     name: "title",
     message: "What's your project title?",
-    validate: (answer) => {
-      if (!answer) {
-        return "Please enter a title for your project";
-      } else {
-        return true;
-      }
-    },
+    validate: (answer) =>
+      !answer ? "Please enter a title for your project" : true,
   },
   {
     type: "input",
@@ -25,13 +20,10 @@ const questions = [
     name: "installation",
     message:
       "Please give the installation instructions for your project. Enter each line of code as you would type it in the CLI, with each line separated by a comma :",
-    validate: (answer) => {
-      if (!answer) {
-        return "Please enter at least one instruction to get your project running in the CLI.";
-      } else {
-        return true;
-      }
-    },
+    validate: (answer) =>
+      !answer
+        ? "Please enter at least one instruction to get your project running in the CLI."
+        : true,
   },
   {
     type: "input",
@@ -82,44 +74,31 @@ const questions = [
     name: "licenseText",
     message: "Please type the name of the license you'd like to add :",
     when: (answers) => answers.license === "Other",
-    validate: (answer) => {
-      if (answer.length > 20) {
-        return "Please make sure your license name is under 20 characters.";
-      } else {
-        return true;
-      }
-    },
+    validate: (answer) =>
+      answer.length > 20
+        ? "Please make sure your license name is under 20 characters."
+        : true,
   },
   {
     type: "input",
     name: "userName",
     message: "What's your github username? [This entry is case sensitive]",
-    validate: (answer) => {
-      if (!answer) {
-        return "Please provide your github username";
-      } else {
-        return true;
-      }
-    },
+    validate: (answer) =>
+      !answer ? "Please provide your github username" : true,
   },
   {
     type: "input",
     name: "email",
     message: "What's your email address?",
-    validate: (email) => {
-      if (!validator.validate(email)) {
-        return "Please enter a valid email address";
-      } else {
-        return true;
-      }
-    },
+    validate: (email) =>
+      !validator.validate(email) ? "Please enter a valid email address" : true,
   },
   {
     type: "input",
     name: "fileName",
     message:
       "What name would you like for your .md file? Please provide only the name without the .md extension.",
-    default: "generatereadme",
+    default: "generatedreadme",
   },
 ];
 
